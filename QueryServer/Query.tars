@@ -1,0 +1,54 @@
+
+module CommActivityManager
+{
+
+struct UserInfo
+    {
+        0 require string name;
+        1 require string phone;
+        2 require string gender;
+        3 require string registration_time;
+        4 require string group;
+    };
+
+    struct ActivityItem
+    {
+        0  require int    activity_id;
+        1  require string title;
+        2  require string sponsor;
+        3  require string community;
+        4  require string create_time;
+        5  require string start_time;
+        6  require string stop_time;
+        7  require string registry_start_time;
+        8  require string registry_stop_time;
+        9  require string content;
+        10 require string target;
+    };
+
+    struct CommunityItem
+    {
+        0 require  int    community_id;
+        1 require  string name;
+        2 require  string chairman;
+        3 optional string introduction;
+    };
+
+    struct CommunityInfo
+    {
+        0 require  int                  memberCount;
+        1 require  int                  activityCount;
+        2 optional vector<ActivityItem> activityList;
+    };
+
+    interface Query
+    {
+        int test();
+        int getUserInfo(string sUserId, out UserInfo sRsp);
+        int getActivityList(out vector<ActivityItem> sRsp);
+        int getActivityDetail(string activityId, out ActivityItem sRsp);
+        int getCommunityList(out vector<CommunityItem> sRsp);
+        int getCommunityDetail(string commId, out CommunityInfo sRsp);
+    };
+
+}; 
